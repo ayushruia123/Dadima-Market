@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Business Homepage</title>
+<style>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        /* Navbar styling */
+        .navbar {
+            background-color: white;
+            color: black;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .navbar ul {
+            list-style-type: none;
+            display: flex;
+            gap: 15px;
+        }
+        .navbar ul li {
+            display: inline;
+        }
+        .navbar ul li a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s, background-color 0.3s;
+            padding: 10px;
+        }
+        .navbar ul li a:hover {
+            background-color: white;
+        }
+        /* Hamburger menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: black;
+            margin: 4px;
+            transition: all 0.3s;
+        }
+        .menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: white;
+            width: 50%;
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            transform: translateX(100%);
+        }
+        .menu.active {
+            display: flex;
+            transform: translateX(0);
+        }
+        .menu a {
+            padding: 15px;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            width: 100%;
+            text-align: center;
+            border-top: 1px solid #ccc;
+            transition: background-color 0.3s;
+        }
+        .menu a:hover {
+            background-color: white;
+        }
+
+        /* Hero section styling */
+        .hero {
+            position: relative;
+            height: 60vh;
+            overflow: hidden;
+        }
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .hero img.active {
+            opacity: 1;
+        }
+        .hero h2 {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 48px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Download brochure section */
+        .download-section {
+            text-align: center;
+            padding: 30px;
+            background-color: #f9f9f9;
+        }
+        .download-btn {
+            padding: 10px 20px;
+            background-color: #D4AF37;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .download-btn:hover {
+            background-color: #B8860B;
+        }
+
+        /* Content sections */
+        .section {
+            display: flex;
+            align-items: center;
+            padding: 50px;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap; /* Allow wrapping */
+        }
+        .section img {
+            width: 40%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .section div {
+            width: 50%;
+        }
+        .section h3 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #1E3A8A;
+        }
+        .section p {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: black;
+            color: white;
+        }
+
+        /* Help Chatbot */
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #D4AF37;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s;
+        }
+        .chatbot:hover {
+            background-color: #B8860B;
+        }
+        .chatbot img {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .navbar ul {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero h2 {
+                font-size: 24px; /* Smaller font size for mobile */
+            }
+            .section img {
+                width: 100%; /* Full width on mobile */
+            }
+            .section div {
+                width: 100%; /* Full width on mobile */
+            }
+        }
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+        }
+
+        .fashion-categories {
+            text-align: center;
+            margin: 50px 0;
+        }
+        .fashion-categories h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .category {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            background: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 150px; /* Fixed width */
+        }
+        .category img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Side navigation styling */
+        .side-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+        .side-nav-call, .side-nav-whatsapp {
+            cursor: pointer;
+            background-color: #004221;
+            padding: 10px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            transition: transform 0.3s;
+        }
+        .side-nav-call:hover, .side-nav-whatsapp:hover {
+            transform: scale(1.1);
+        }
+        .side-nav-call .phone-icon, .side-nav-whatsapp .whatsapp-icon {
+            height: 40px;
+            width: 40px;
+        }
+
+.side-nav-call p {
+  display: block;
+  max-width: 0;
+  opacity: 0;
+  font-size: x-large;
+  font-family: "josefin sans", sans-serif;
+  font-weight: 400;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  padding: 10px;
+  width: 230px;
+  height: 30px;
+  transform: translateX(256px);
+  z-index: 0;
+  color: white;
+}
+
+.side-nav-call p.revealed {
+  max-width: 200px;
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.side-nav-call {
+  background-color: #004221;
+  padding: 8px;
+  border-radius: 50px 0 0 50px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  cursor: pointer;
+}
+
+.side-nav-call .phone-icon {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+}
+
+.side-nav-whatsapp {
+  cursor: pointer;
+  background-color: #004221;
+  margin-top: 15px;
+  padding: 0 11px;
+  border-radius: 50px 0 0 50px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-nav-whatsapp-icon {
+  background: url('assets/whatsapp gif.gif');
+  height: 50px;
+  width: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
+/* Positioning for the side navigation */
+.side-nav {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  z-index: 1000;
+}
+.side-nav-call,
+.side-nav-whatsapp {
+    background-color: transparent; /* Remove the background color to show the image */
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: -100px;
+}
+
+.side-nav-call {
+    background: url('assets/call.gif') no-repeat center;
+    height: 60px;
+    width: 60px;
+    right: -100px;
+}
+
+.side-nav-whatsapp {
+    background: url('assets/whatsapp gif.gif') no-repeat center;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    right: -100px;
+}
+
+.side-nav-enquiry {
+  margin: 90px 0 0 0;
+  position: relative;
+  right: -5px;
+  transform: rotate(-90deg);
+}
+
+.side-nav-enquiry button {
+  padding: -1px 18px;
+  background-color: #004221;
+  border: none;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  animation: glow 2s infinite;
+  width: 180px;
+  gap:  180px;
+  /* Apply the glow animation */
+}
+
+.side-nav-enquiry button:hover {
+  background-color: #000000;
+  animation: none;
+  /* Turn off the glow animation on hover */
+}
+
+        /* Hidden chatbot iframe */
+        .chatbot-iframe {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 300px;
+            height: 500px;
+            border: none;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Close button for iframe */
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+        }
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* Set background color to white */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.navbar h1 {
+    color: #333; /* Set text color to dark for better visibility */
+}
+
+.hamburger {
+    display: none; /* Initially hide the hamburger */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background-color: #333; /* Change hamburger color to dark */
+    margin: 4px;
+}
+
+.menu {
+    display: flex; /* Default display for larger screens */
+    list-style: none;
+}
+
+.menu.active {
+    display: block; /* Show menu when active */
+}
+
+.menu li {
+    margin-left: 20px; /* Space between menu items */
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333; /* Set link color to dark */
+    font-weight: bold;
+}
+
+/* Responsive Menu */
+@media (max-width: 768px) {
+    .menu {
+        position: fixed;
+        top: 60px; /* Positioning below the navbar */
+        right: -200px; /* Hide off-screen initially */
+        background-color: #fff; /* White background for menu */
+        width: 200px;
+        transition: right 0.3s ease; /* Smooth transition for sliding */
+        padding: 20px; /* Add padding */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow */
+    }
+
+    .menu.active {
+        right: 0; /* Slide in */
+    }
+
+    .hamburger {
+        display: flex; /* Show hamburger on small screens */
+    }
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* Set background color to white */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.hamburger {
+    display: none; /* Initially hide the hamburger */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background-color: #333; /* Change hamburger color to dark */
+    margin: 4px;
+}
+
+/* Updated Menu Styles */
+.menu {
+    display: flex; /* Default display for larger screens */
+    list-style: none;
+}
+
+.menu.active {
+    display: block; /* Show menu when active */
+}
+
+.menu li {
+    margin-left: 20px; /* Space between menu items */
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333; /* Set link color to dark */
+    font-weight: bold;
+}
+
+/* Responsive Menu */
+@media (max-width: 768px) {
+    .menu {
+        position: fixed; 
+        top: 60px; /* Positioning below the navbar */
+        right: 0; /* Align to the right */
+        background-color: #fff; /* White background for menu */
+        width: 50%; /* Full width */
+        height: calc(100% - 60px); /* Full height minus navbar */
+        transition: right 0.3s ease; /* Smooth transition for sliding */
+        padding: 20px; /* Add padding */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow */
+        z-index: 999; /* Ensure menu is above other content */
+        display: none; /* Hidden by default */
+        flex-direction: column; /* Stack items vertically */
+    }
+
+    .menu.active {
+        display: flex; /* Show when active */
+    }
+
+    .hamburger {
+        display: flex; /* Show hamburger on small screens */
+    }
+}
+
+.get-in-touch-tab {
+    display: flex; /* Flexbox for horizontal alignment */
+    justify-content: space-between; /* Space out the items */
+    align-items: center; /* Center vertically */
+    padding: 20px; /* Padding for space */
+    background-color: lightblue; /* Background color for the tab */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.get-in-touch-button {
+    flex: 1; /* Take up equal space */
+}
+
+.button {
+    padding: -1px 18px;
+  background-color: #004221;
+  border: none;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  animation: glow 2s infinite;
+}
+
+.button:hover {
+    background-color: black; /* Darker shade on hover */
+}
+
+.social-icons {
+    display: flex; /* Flexbox for icon alignment */
+    justify-content: flex-end; /* Align icons to the right */
+    flex: 1; /* Take up equal space */
+}
+
+.icon {
+    margin-left: 15px; /* Space between icons */
+}
+
+.icon img {
+    width: 30px; /* Icon size */
+    height: 30px; /* Icon size */
+    transition: transform 0.3s; /* Animation on hover */
+}
+
+.icon:hover img {
+    transform: scale(1.1); /* Slightly enlarge icon on hover */
+}
+.container {
+    width: 90%; /* Will take 90% of the viewport width */
+    margin: auto;
+}
+.hero {
+    height: 100vh; /* Takes up the entire height of the viewport */
+}
+
+@media (max-width: 768px) {
+    .navbar ul {
+        display: none; /* Hide the regular navbar */
+    }
+    .hamburger {
+        display: flex; /* Show hamburger menu */
+    }
+    .product-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile view */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-container {
+        grid-template-columns: 1fr; /* 1 column for very small screens */
+    }
+}
+img {
+    max-width: 100%; /* Image won't exceed its container */
+    height: auto; /* Keeps the aspect ratio intact */
+}
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.product {
+    flex: 1 1 48%; /* 48% width, fits two products side by side */
+}
+
+@media (max-width: 768px) {
+    .product {
+        flex: 1 1 100%; /* Full width for small screens */
+    }
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on larger screens */
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* 1 column on extra small screens */
+    }
+}
+.container {
+    padding: 2em; /* Padding that adjusts with the font size */
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1em; /* Reduced padding for small screens */
+    }
+}
+
+/* Existing styles remain unchanged */
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+    .slider-container {
+        display: none; /* Hide the slider container */
+    }
+
+    /* Optionally, you can adjust other elements for better mobile view */
+    body {
+        padding: 10px; /* Adjust body padding for mobile */
+    }
+
+    /* Example for making text responsive */
+    .slide {
+        font-size: 14px; /* Smaller font size for mobile */
+        padding: 10px; /* Adjust padding for mobile */
+    }
+}
+
+.mobile-links {
+    display: none; /* Hide by default */
+}
+
+@media (max-width: 768px) { /* Adjust the max-width as needed */
+    .mobile-links {
+        display: block; /* Show in mobile view */
+        background-color: #f8f8f8; /* Optional background color */
+        padding: 10px; /* Optional padding */
+        text-align: center; /* Center-align the links */
+    }
+
+    .mobile-links ul {
+        list-style: none; /* Remove bullet points */
+        padding: 0; /* Remove padding */
+        margin: 0; /* Remove margin */
+    }
+
+    .mobile-links li {
+        margin: 5px 0; /* Add space between links */
+    }
+
+    .mobile-links a {
+        text-decoration: none; /* Remove underline */
+        color: #333; /* Link color */
+        font-weight: bold; /* Optional font weight */
+    }
+
+    .mobile-links a:hover {
+        color: #007BFF; /* Optional hover color */
+    }
+}
+
+.mobile-links {
+    display: none; /* Hidden by default */
+    background-color: #f9f9f9; /* Light background for visibility */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding around links */
+    position: absolute; /* Position it below the button */
+    top: 60px; /* Adjust as necessary to position it correctly */
+    width: 100%; /* Full width */
+    z-index: 10; /* Make sure it appears above other content */
+}
+
+.mobile-links ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+.mobile-links li {
+    margin: 10px 0; /* Gap between links */
+}
+
+.mobile-links a {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Link color */
+    display: block; /* Make links fill the list item */
+    padding: 10px; /* Padding for better click area */
+    border-radius: 3px; /* Rounded corners for links */
+    transition: background 0.3s; /* Smooth background change */
+}
+
+.mobile-links a:hover {
+    background-color: #eee; /* Light background on hover */
+}
+
+.toggle-button {
+    background-color: white; /* Button background color */
+    color: black; /* Button text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for button */
+    cursor: pointer; /* Pointer on hover */
+}
+
+.toggle-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.toggle-button i {
+    font-size: 400px; /* Adjust this value as needed */
+}
+
+
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>Asha's Creations </h1>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <ul>
+            <li><a href="Indian.html">Indianwear</a></li>
+            <li><a href="Western.html">Indo-Westernwear</a></li>
+            <li><a href="">Handpaint</a></li>
+            <li><a href="Customized.html">Contact</a></li>
+            <li><a href="Potli.html">Potlis</a></li>
+        </ul>
+    </div>
+
+    <div class="menu" id="menu">
+        <a href="Indian.html" onclick="toggleMenu()">Indianwear</a>
+        <a href="Western.html" onclick="toggleMenu()">Indo-Westernwear</a>
+        <a href="Handpaint.html" onclick="toggleMenu()">Handpaint</a>
+        <a href="Costumized.html" onclick="toggleMenu()">Customized</a>
+        <a href="Potli.html" onclick="toggleMenu()">Potlis</a>
+    </div>
+
+    <div class="hero">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrdU3nCFsiqsBPVkoeF1WbCbruW1rpARtcjA&s" alt="Fashion Image 1" class="hero-image active" id="heroImage1" alt="Fashion Image 1" class="active">
+        <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI-EPGxIUPwp03POlDG-t09VfgFlAdjjkL7kVBjLpgW4OAP7bjFJ1S8DQLxXRlcMSBGcA&usqp=CAU" alt="Fashion Image 2">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOYfPCbnneh6l3uWkLXto5PCgPN8SeM0D23g&s" alt="Fashion Image 3">
+        <h2>Explore the Latest Fashion Trends</h2>
+    </div>
+
+    <div class="download-section">
+        <a href="https://www.canva.com/design/DAGSBloOr9g/EPjmvvzwAkWPqoZQFtQVrQ/edit?utm_content=DAGSBloOr9g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="download-btn" download>Download Our Brochure</a>
+    </div>
+
+    <div class="fashion-categories" id="categories">
+        <h2>Fashion Categories</h2>
+        <div class="categories">
+            <div class="category">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXA64k8ca2kgzmf0G6IZwu4WMQK0jJyEOnYA&s" alt="Category 1">
+                <h3>IndianWear</h3>
+            </div>
+            <div class="category">
+                <img src="https://fashiondeal.in/cdn/shop/files/red-stylish-indowestern-fancy-kurti-11438.jpg?v=1718022481" alt="Category 2">
+                <h3>WesternWear</h3>
+            </div>
+            <div class="category">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-cJcLjQ643fgFEa6qMWJW_-kH6P_fAemxTA&s" alt="Category 3">
+                <h3>Handpaint</h3>
+            </div>
+            <div class="category">
+                <img src="https://onehouse.in/wp-content/uploads/2023/02/DSC00322.jpg" alt="Category 4">
+                <h3>Customized</h3>
+            </div>
+                 <div class="category">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA990D-Mqa9KoJog3UqCqdEprI9fBvP7I_7Q&s" alt="Category 5">
+                <h3>Potlis</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="about">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKkrGe40DkNbhLZ4p-0dBJA_s_mhYWQC6uCA&s" alt="About Us">
+        <div>
+            <h3>About Us</h3>
+            <p>Hello! My name is Asha Ruia, and I have a great passion for fashion and keeping up with the latest trends in clothing. I’m excited to share that I’ve started my own business called "Asha’s Creations." Through this venture, I aim to bring my unique style and creativity to life by offering trendy, high-quality clothing for everyone. With a deep understanding of the latest fashion trends, I carefully select designs that reflect my love for modern and stylish outfits. My goal is to provide my customers with clothing that not only looks great but also makes them feel confident and comfortable.
+
+At Asha’s Creations, I focus on making sure each piece is crafted with care and attention to detail. Whether you're looking for casual wear, something more elegant, or a custom design, I’m here to help you find the perfect fit. Through my business, I want to share my talent and passion for fashion with the world, helping people express themselves through their clothing choices. Thank you for your support, and I look forward to serving you!</p>
+        </div>
+    </div>
+
+    <div class="section" id="contact">
+        <img src="https://media-api.xogrp.com/images/eceb29bd-f73c-4dfa-bb20-2590ebee6df8~rs_768.h-cr_0.0.1000.1333" alt="Contact Us">
+        <div>
+            <h3>Contact Us</h3>
+            <p>At Asha’s Creations, my dresses are known for being unique, bright, and designed to make you feel confident and stylish. I believe that fashion should not only make a statement but also be comfortable, and that’s why I put my heart into creating pieces that are as cozy as they are eye-catching. Every dress I make is crafted with great care and attention to detail, ensuring that you look your absolute best in whatever you wear.
+
+I specialize in a wide variety of styles, including Indian, Western, hand-painted, and fully customized dresses. Whether you’re looking for traditional Indian wear with a modern twist, trendy Western outfits, or a special dress tailored just for you, I’m here to bring your vision to life. My hand-painted designs add a personal touch, making each dress one-of-a-kind and perfect for those who want something truly special.
+
+With a focus on quality and creativity, I strive to make sure that every piece I create stands out for its bright colors, unique patterns, and exceptional comfort. My goal is to help you express your individuality through fashion, making you look and feel amazing in everything you wear. At Asha’s Creations, I’m committed to delivering the best in design, fit, and style, ensuring that your wardrobe always has something fresh and beautiful.</p>
+        </div>
+    </div>
+
+    <div class="get-in-touch-tab">
+    <div class="get-in-touch-button">
+        <a href="https://sheetdb.io/s/f/77sqhldgynpvp" target="_blank" class="button">Get in Touch</a>
+    </div>
+</div>
+   <center> <div class="social-icons"> </center>
+        <a href="https://www.instagram.com" target="_blank" class="icon instagram">
+            <img src="https://cdn.pixabay.com/photo/2021/06/15/12/14/instagram-6338393_640.png" alt="Instagram">
+        </a>
+        <a href="https://www.facebook.com" target="_blank" class="icon facebook">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQKrFhY-ljA-u7J5IMWeTv8zmpBx4PP9nQMw&s" alt="Facebook">
+        </a>
+        <a href="https://www.twitter.com" target="_blank" class="icon twitter">
+            <img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1727481600&semt=ais_hybrid" alt="Twitter">
+        </a>
+    </div>
+</div>
+
+
+    <div class="footer">
+        <p>&copy; 2024 Fashion Business. All Rights Reserved.</p>
+    </div>
+
+
+
+    <div class="side-nav">
+        <a class="side-nav-call" href="tel:+1234567890">
+            <img class="phone-icon" src="https://store-images.s-microsoft.com/image/apps.8453.13655054093851568.4a371b72-2ce8-4bdb-9d83-be49894d3fa0.7f3687b9-847d-4f86-bb5c-c73259e2b38e?h=210" alt="Call Us">
+        </a>
+        <a class="side-nav-whatsapp" href="https://wa.me/1234567890">
+            <img class="whatsapp-icon" src="https://cdn-icons-png.freepik.com/512/6901/6901235.png" alt="WhatsApp Us">
+        </a>
+    </div>
+
+    <div class="chatbot" onclick="toggleChatbot()">
+        <img src="https://cdn-icons-png.flaticon.com/512/682/682055.png" alt="Chatbot">
+    </div>
+    <iframe class="chatbot-iframe" id="chatbotIframe" src="https://your-chatbot-url.com" style="display: none;"></iframe>
+
+     <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.hero img');
+        const totalImages = images.length;
+
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+
+        function showPhoneText() {
+            const phoneText = document.querySelector('.phone-text');
+            phoneText.classList.toggle('revealed');
+        }
+
+        function changeImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % totalImages;
+            images[currentIndex].classList.add('active');
+        }
+
+        setInterval(changeImage, 3000); // Change image every 3 seconds
+    </script>
+</body>
+</html>

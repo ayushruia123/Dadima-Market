@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Menu Button Styling */
+        #menuButton {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 1000; /* Keep button on top */
+        }
+
+        /* Menu Container */
+        #menu {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 200px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            display: none; /* Hidden by default */
+            z-index: 999; /* Ensure menu is below button */
+        }
+
+        /* Menu List Styling */
+        #menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #menu li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Button to Toggle the Menu -->
+    <button id="menuButton">Menu</button>
+
+    <!-- Menu that appears/disappears -->
+    <div id="menu">
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Services</li>
+            <li>Contact</li>
+        </ul>
+    </div>
+
+    <script>
+        // JavaScript to handle the menu toggle
+        const menuButton = document.getElementById('menuButton');
+        const menu = document.getElementById('menu');
+
+        menuButton.addEventListener('click', () => {
+            // Toggle menu visibility
+            if (menu.style.display === "none" || menu.style.display === "") {
+                menu.style.display = "block";  // Show the menu
+            } else {
+                menu.style.display = "none";   // Hide the menu
+            }
+        });
+    </script>
+
+</body>
+</html>

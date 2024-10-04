@@ -1,0 +1,803 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navbar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .hamburger {
+    position: relative; /* Or absolute/fixed depending on your layout */
+    z-index: 1000; /* Ensure this value is higher than the hero section */
+}
+
+.hero-image {
+    position: relative; /* Keep it in flow */
+    z-index: 1; /* Lower than the hamburger menu */
+}
+
+
+    /* Navbar styles */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 1rem 2rem;
+      height: 80px;
+      position: relative;
+    }
+
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      color: black;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .navbar-logo img {
+      width: 50px;
+      margin-right: 10px;
+    }
+
+    /* Centered heading */
+    .navbar-heading {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5rem;
+      color: black;
+    }
+
+    .navbar-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    .navbar-links li a {
+      color: black;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .navbar-links li a:hover {
+      color: grey;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 30px;
+      height: 3px;
+      background-color: black;
+      margin: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .hamburger:hover div {
+      background-color: white;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar-links {
+        display: none;
+        position: absolute;
+        top: 80px;
+        right: 0;
+        background-color: white;
+        width: 100%;
+        text-align: center;
+        flex-direction: column;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar-links li {
+        margin: 1rem 0;
+      }
+
+      .navbar-links li a {
+        font-size: 1.2rem;
+        color: black;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .navbar.active .navbar-links {
+        display: flex;
+      }
+    }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.hero-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero-slideshow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.hero-image.active {
+    opacity: 1;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 768px) {
+    .hero-text {
+        font-size: 1.8em;
+    }
+}
+
+/* Ensure the hero image covers the container properly */
+.hero-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Adjust text size and layout for smaller screens */
+@media (max-width: 1200px) {
+    .hero-text {
+        font-size: 2em;
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-container {
+        height: 80vh;
+    }
+
+    .hero-text {
+        font-size: 1.6em;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-container {
+        height: 70vh;
+    }
+
+    .hero-text {
+        font-size: 1.4em;
+    }
+}
+
+/* Ensure text is always on top of the images */
+.hero-container {
+    position: relative;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7); /* Ensure visibility on all images */
+    z-index: 10; /* Keeps the text above images */
+    width: 100%; /* Ensures the text takes full width */
+    padding: 0 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-text {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text {
+        font-size: 1.4em;
+    }
+}
+
+.centered-text-container {
+    max-width: 800px;
+    margin: 0 auto; /* Centers the container */
+    padding: 20px;
+    text-align: center; /* Centers the text */
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adds shadow for a clean look */
+  }
+
+  .centered-text-container h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .centered-text-container h4 {
+    font-size: 1.5rem;
+    color: #444;
+    margin-bottom: 10px;
+  }
+
+  .centered-text-container p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .centered-text-container {
+      padding: 15px;
+    }
+
+    .centered-text-container h2 {
+      font-size: 1.5rem;
+    }
+
+    .centered-text-container h4 {
+      font-size: 1.3rem;
+    }
+
+    .centered-text-container p {
+      font-size: 1rem;
+    }
+  }
+
+   /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: black;
+            color: white;
+        }
+
+/* Styles for the hamburger menu */
+.nav-links {
+  display: none; /* Keep the menu hidden initially */
+  position: absolute; /* Positioning for the menu */
+  top: 60px; /* Adjust based on your navbar height */
+  left: 0;
+  right: 0;
+  background-color: white; /* Set the background to white */
+  z-index: 1000; /* Ensure it appears above other elements */
+  /* You can add more styling here, like padding or box-shadow */
+}
+
+/* Show the menu when active */
+.nav-active {
+  display: block; /* Show menu when hamburger is clicked */
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mobile-container {
+  max-width: 480px;
+  margin: auto;
+  background-color: #555;
+  height: 500px;
+  color: white;
+  border-radius: 10px;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  position: relative;
+}
+
+.topnav #myLinks {
+  display: none;
+
+}
+
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+.topnav a.icon {
+  background: black;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.mobile-links {
+    display: none; /* Hide by default */
+}
+
+@media (max-width: 768px) { /* Adjust the max-width as needed */
+    .mobile-links {
+        display: block; /* Show in mobile view */
+        background-color: #f8f8f8; /* Optional background color */
+        padding: 10px; /* Optional padding */
+        text-align: center; /* Center-align the links */
+    }
+
+    .mobile-links ul {
+        list-style: none; /* Remove bullet points */
+        padding: 0; /* Remove padding */
+        margin: 0; /* Remove margin */
+    }
+
+    .mobile-links li {
+        margin: 5px 0; /* Add space between links */
+    }
+
+    .mobile-links a {
+        text-decoration: none; /* Remove underline */
+        color: #333; /* Link color */
+        font-weight: bold; /* Optional font weight */
+    }
+
+    .mobile-links a:hover {
+        color: #007BFF; /* Optional hover color */
+    }
+}
+
+.mobile-links {
+    display: none; /* Hidden by default */
+    background-color: #f9f9f9; /* Light background for visibility */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding around links */
+    position: absolute; /* Position it below the button */
+    top: 60px; /* Adjust as necessary to position it correctly */
+    width: 100%; /* Full width */
+    z-index: 10; /* Make sure it appears above other content */
+}
+
+.mobile-links ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+.mobile-links li {
+    margin: 10px 0; /* Gap between links */
+}
+
+.mobile-links a {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Link color */
+    display: block; /* Make links fill the list item */
+    padding: 10px; /* Padding for better click area */
+    border-radius: 3px; /* Rounded corners for links */
+    transition: background 0.3s; /* Smooth background change */
+}
+
+.mobile-links a:hover {
+    background-color: #eee; /* Light background on hover */
+}
+
+.toggle-button {
+    background-color: white; /* Button background color */
+    color: black; /* Button text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for button */
+    cursor: pointer; /* Pointer on hover */
+}
+
+.toggle-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.toggle-button i {
+    font-size: 400px; /* Adjust this value as needed */
+}
+
+
+
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <img src="logo.png" alt="Logo">
+    </div>
+    
+    <!-- Centered Heading -->
+    <div class="navbar-heading">
+      Asha's Creations 
+
+    </div>
+<button id="toggle-links" class="toggle-button">&#9776;</button>
+
+    <!-- Mobile View Links -->
+
+
+
+      <ul class="navbar-links">
+      <li><a href="About Us.html">Home</a></li>
+      <li><a href="Handpaint.html">Handpaint</a></li>
+      <li><a href="Western.html">Indo-Westernwear</a></li>
+      <li><a href="Customization.html">Gallery</a></li>
+      <li><a href="Potli.html">Potlis</a></li>
+    </ul>
+
+      </nav>
+
+  <div class="mobile-links"id="mobile-links">
+    <ul>
+        <li><a href="About Us.html">Home</a></li>
+        <li><a href="Handpaint.html">Handpaint</a></li>
+        <li><a href="Western.html">Indo-Westernwear</a></li>
+        <li><a href="Customization.html">Gallery</a></li>
+        <li><a href="Potli.html">Potlis</a></li>
+    </ul>
+</div>
+
+<script>
+    // JavaScript to toggle mobile links visibility
+document.getElementById('toggle-links').addEventListener('click', function() {
+    var links = document.getElementById('mobile-links');
+    if (links.style.display === "block") {
+        links.style.display = "none"; // Hide the links
+    } else {
+        links.style.display = "block"; // Show the links
+    }
+});
+
+</script>
+
+
+  <div class="hero-container">
+        <div class="hero-text">
+            <h1>Discover the Latest Indian Fashion Trends</h1>
+        </div>
+        <div class="hero-slideshow">
+            <div class="hero-image active" style="background-image: url('https://staticm247.kalkifashion.com/media/wysiwyg/bridal-banner-desk-12-4-24.jpg?aio-w=1920');"></div>
+            <div class="hero-image" style="background-image: url('https://images.yourstory.com/cs/wordpress/2017/03/Indian_women_fashion.jpg');"></div>
+            <div class="hero-image" style="background-image: url('https://cdn.tatlerasia.com/tatlerasia/i/2023/07/18145217-hero-img-manish-malhotra-mijwan-craft-2023-summer-couture_cover_1182x666.jpg');"></div>
+        </div>
+    </div>
+
+<script>
+  let currentIndex = 0;
+const images = document.querySelectorAll('.hero-image');
+
+function changeImage() {
+    images[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + 1) % images.length;
+    images[currentIndex].classList.add('active');
+}
+
+setInterval(changeImage, 3000);
+
+</script>
+
+<div class="centered-text-container">
+  <h2>INDIAN DRESSES</h2>
+  
+  <h4>How To Describe Indian Dresses</h4>
+  <p>Some of the most iconic and traditional Indian garments include the saree, the lehenga choli, and the salwar kameez. Men traditionally wear a dhoti, kurta pajama, or sherwani. Each of these garments has its unique style and history, with the saree being one of the oldest and most versatile garments in Indian fashion.</p>
+  
+  <h4>What is the significance of Indian dress?</h4>
+  <p>The traditional clothing of India is a testament to the diverse cultures that have flourished over millennia. From Kashmir to Kanyakumari, Indian traditional attire plays a crucial role in festivals, religious ceremonies, and celebrations, showcasing their identity and unique practices.</p>
+  
+  <h4>Formal Indian Dresses</h4>
+  <p>Elegant sarees are a great option for formal events. Indian wear includes – Salwar Suits. A salwar suit is a complete outfit in itself. It includes a salwar (Indian-style trousers), a kurta, and a dupatta.</p>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<!-- Container for Portrait Layout with Images Only -->
+<div class="portrait-layout-container">
+  <!-- Portrait Item 1 -->
+  <div class="portrait-item">
+    <img src="your-image-1.jpg" alt="Indo-Western Dress Design 1" />
+  </div>
+
+  <!-- Portrait Item 2 -->
+  <div class="portrait-item">
+    <img src="your-image-2.jpg" alt="Indo-Western Dress Design 2" />
+  </div>
+
+  <!-- Portrait Item 3 -->
+  <div class="portrait-item">
+    <img src="your-image-3.jpg" alt="Indo-Western Dress Design 3" />
+  </div>
+
+  <!-- Portrait Item 4 -->
+  <div class="portrait-item">
+    <img src="your-image-4.jpg" alt="Indo-Western Dress Design 4" />
+  </div>
+
+  <!-- Portrait Item 5 -->
+  <div class="portrait-item">
+    <img src="your-image-5.jpg" alt="Indo-Western Dress Design 5" />
+  </div>
+
+  <!-- Portrait Item 6 -->
+  <div class="portrait-item">
+    <img src="your-image-6.jpg" alt="Indo-Western Dress Design 6" />
+  </div>
+
+  <!-- Portrait Item 7 -->
+  <div class="portrait-item">
+    <img src="your-image-7.jpg" alt="Indo-Western Dress Design 7" />
+  </div>
+
+  <!-- Portrait Item 8 -->
+  <div class="portrait-item">
+    <img src="your-image-8.jpg" alt="Indo-Western Dress Design 8" />
+  </div>
+</div>
+
+<!-- Add this CSS for the layout -->
+<style>
+  .portrait-layout-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap to the next line */
+    justify-content: space-between; /* Adjusts spacing between boxes */
+}
+
+.portrait-box {
+    background-color: #f0f0f0; /* Background color for boxes */
+    border: 1px solid #ccc; /* Border for the boxes */
+    width: calc(50% - 10px); /* 50% width minus margin */
+    margin-bottom: 20px; /* Space between rows */
+    box-sizing: border-box; /* Ensure padding/border is included in width */
+    padding: 20px; /* Padding inside the boxes */
+    text-align: center; /* Center text */
+}
+
+/* Media Query for mobile view */
+@media (max-width: 768px) {
+    .portrait-box {
+        width: calc(50% - 10px); /* 50% width to fit 2 boxes in a row */
+    }
+}
+
+  /* Container setup */
+  .portrait-layout-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px; /* Space between the rectangles */
+    max-width: 2400px;
+    margin: 0 auto; /* Center the container */
+  }
+
+  /* Portrait item (individual image container) */
+  .portrait-item {
+    width: 22%; /* 4 items per row in larger viewports */
+    aspect-ratio: 3 / 4; /* Keeps the portrait shape */
+    overflow: hidden; /* Ensure images fit well */
+    background-color: #f0f0f0; /* Neutral background for placeholder look */
+    border-radius: 10px;
+    height: 200px;
+  }
+
+  .portrait-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fits the container */
+    border-radius: 10px;
+  }
+
+  /* Mobile View (2 items per row) */
+  @media (max-width: 768px) {
+    .portrait-item {
+      height: 100%;    
+      width: 100%; /* Adjust for 2 items per row */
+    }
+
+  }
+
+.portrait-box {
+    background-color: #f0f0f0; /* Background color for boxes */
+    border: 1px solid #ccc; /* Border for the boxes */
+    width: calc(50% - 10px); /* 50% width minus margin */
+    height: 100vh; /* Height as a percentage of the viewport height */
+    margin-bottom: 20px; /* Space between rows */
+    box-sizing: border-box; /* Ensure padding/border is included in width */
+    padding: 20px; /* Padding inside the boxes */
+    text-align: center; /* Center text */
+}
+
+.portrait-box {
+    background-color: #f0f0f0; /* Background color for boxes */
+    border: 1px solid #ccc; /* Border for the boxes */
+    width: calc(50% - 10px); /* 50% width minus margin */
+    height: 2000px; /* Adjust height as needed */
+    margin-bottom: 20px; /* Space between rows */
+    box-sizing: border-box; /* Ensure padding/border is included in width */
+    padding: 20px; /* Padding inside the boxes */
+    text-align: center; /* Center text */
+}
+
+</style>
+
+
+<div class="icon-container">
+    <a href="https://wa.me/your_whatsapp_number" class="icon" target="_blank">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7qfjSM43vc1UXIDm8LhtAF9OIRx-M8IbpFQ&s" alt="WhatsApp">
+    </a>
+    <a href="tel:+your_phone_number" class="icon" target="_blank">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRulYmnhxOaa3Q7vEYE-RnUdv4FaKTPcqEi6Q&s" alt="Phone">
+    </a>
+   <!-- Measurement Rectangle -->
+    <a href="https://wa.me/your_whatsapp_number" class="measurement-rectangle" target="_blank" style="display: block; background-color: lightgreen; color: #000; padding: 10px; font-size: 14px; font-family: Arial, sans-serif; border-radius: 10px 0 0 10px; box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); text-decoration: none; width: 100px;">
+        Location
+
+</div>
+
+<style>
+  /* Container for the icons */
+.icon-container {
+    position: fixed; /* Fixes the position to the viewport */
+    right: 20px; /* Space from the right edge */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+    display: flex;
+    flex-direction: column; /* Stack icons vertically */
+    gap: 15px; /* Space between icons */
+}
+
+/* Styles for each icon */
+.icon {
+    background-color: #25D366; /* WhatsApp color */
+    border-radius: 50%; /* Circular shape */
+    padding: 10px; /* Padding inside the circle */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+.icon img {
+    width: 40px; /* Icon width */
+    height: 40px; /* Icon height */
+}
+
+/* Change color on hover */
+.icon:hover {
+    background-color: #128C7E; /* Darker WhatsApp color */
+}
+
+/* For the phone icon */
+.icon:nth-child(2) {
+    background-color: #007BFF; /* Phone color */
+}
+
+.icon:nth-child(2):hover {
+    background-color: #0056b3; /* Darker Phone color on hover */
+}
+/* Container for the icons */
+.icon-container {
+    position: fixed; /* Fixes the position to the viewport */
+    right: 20px; /* Space from the right edge */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+    display: flex;
+    flex-direction: column; /* Stack icons vertically */
+    gap: 15px; /* Space between icons */
+}
+
+/* Styles for each icon */
+.icon {
+    display: flex; /* Enables flexbox */
+    justify-content: center; /* Centers the image horizontally */
+    align-items: center; /* Centers the image vertically */
+    background-color: #25D366; /* WhatsApp color */
+    border-radius: 50%; /* Circular shape */
+    width: 50px; /* Equal width */
+    height: 50px; /* Equal height */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+.icon img {
+    width: 30px; /* Icon width */
+    height: 30px; /* Icon height */
+}
+
+/* Change color on hover */
+.icon:hover {
+    background-color: #128C7E; /* Darker WhatsApp color */
+}
+
+/* For the phone icon */
+.icon:nth-child(2) {
+    background-color: #007BFF; /* Phone color */
+}
+
+.icon:nth-child(2):hover {
+    background-color: #0056b3; /* Darker Phone color on hover */
+}
+
+</style>
+
+         <div class="footer">
+        <p>&copy; 2024 Fashion Business. All Rights Reserved.</p>
+    </div>
+
+
+</body>
+</html>
