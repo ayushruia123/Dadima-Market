@@ -467,6 +467,38 @@ body {
     font-size: 400px; /* Adjust this value as needed */
 }
 
+/* Hide the hamburger menu on larger screens */
+@media screen and (min-width: 768px) {
+  #toggle-links {
+    display: none;
+  }
+  
+  /* Show the navbar links directly in desktop view */
+  .navbar-links {
+    display: block;
+  }
+}
+
+/* Show the hamburger menu on smaller screens */
+@media screen and (max-width: 767px) {
+  .navbar-links {
+    display: none;
+  }
+
+  /* Show mobile links only when toggled */
+  #mobile-links {
+    display: none;
+  }
+
+  #toggle-links {
+    display: block;
+    cursor: pointer;
+  }
+
+  #toggle-links.active + #mobile-links {
+    display: block;
+  }
+}
 
 
   </style>
@@ -484,6 +516,9 @@ body {
 
     </div>
 
+  <button id="toggle-links" class="toggle-button">&#9776;</button>
+
+    <!-- Mobile View Links -->
 
 
       <ul class="navbar-links">
@@ -496,9 +531,6 @@ body {
 
       </nav>
 
-  <button id="toggle-links" class="toggle-button">&#9776;</button>
-
-    <!-- Mobile View Links -->
 
 
   <div class="mobile-links"id="mobile-links">
